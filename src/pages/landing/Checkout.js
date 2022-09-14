@@ -42,16 +42,11 @@ const Checkout = () => {
 content = {
         <>
         <section class="h-100" style={titleStyle}>
-            
-      
       <div class="container h-100 py-5">
     <div class="row d-flex justify-content-center align-items-center h-100">   
       <div class="col-10">
-      <div class="auth-option pt-5 mb-3" style={{Color: "green" }}>
-                       <Link to="/cart"> 
-                       <i class="fa-solid fa-arrow-left"></i>
-                       <a class="text-link"> Back To Cart</a>
-                        </Link>
+      <div class="auth-option pt-5 mb-3" >
+ 
         </div>
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h3 class="fw-normal mb-0 text-black">Delivery Address</h3>
@@ -63,20 +58,9 @@ content = {
           <div class="card-body p-4">
             <div class="row d-flex justify-content-between align-items-center">
 
-          
-                            <div class="form-group mb-3">
-                            <div class="row">
-                                <div class="col">
-                                <input type="text" class="form-control" placeholder="First name" required="required"/>
-                                </div>
-                                <div class="col">
-                                <input type="text" class="form-control" placeholder="Last name" required="required"/>
-                                </div>
-                            </div>
-                            </div>
                             <div class="form-group mb-3">
                                 <div class="col-md-12">
-                                    <input type="text" name="address" class="form-control" placeholder="Address" required="required" />
+                                    <input type="text" name="address" class="form-control" placeholder="Street Address" required="required" />
                                 </div>
                             </div>
                             <div class="form-group mb-3">
@@ -89,12 +73,7 @@ content = {
                                     <input type="text" name="zip_code" class="form-control" placeholder="Zip Code"/>
                                 </div>
                             </div>
-                            <div class="form-group mb-3">
-                                <div class="col-md-12"><input type="text" name="phone_number" class="form-control"  placeholder="phone number" required="required"/></div>
-                            </div>
-                            <div class="form-group mb-3">
-                                <div class="col-md-12"><input type="text" name="email_address" class="form-control"  placeholder="email address" required="required"/></div>
-                            </div>
+
             </div>
           </div>
         </div>

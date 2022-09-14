@@ -3,6 +3,11 @@ import { useCart } from "react-use-cart";
 const ShopPlant = (props)=> {
     const{name,price, id, img} = props;
     const { addItem } = useCart();
+    const addToCart  = () => {
+        addItem({name,price, id, img});
+        alert("Added to cart successfully");
+
+    }
 
     return(
         <div class="col-6 col-md-4 col-xl-3 col-xxl-2">
@@ -19,7 +24,7 @@ const ShopPlant = (props)=> {
                    <ul class="list-unstyled mb-0">
                        <li><span class="text-muted">Price:</span> {price}</li>
                        <div key={props.plant.id}>
-                       <button  onClick={() => addItem({name,price, id, img})} type="button" class="btn btn-success mt-3" >Add to cart</button>
+                       <button  onClick={addToCart} type="button" class="btn btn-success mt-3" >Add to cart</button>
                          </div>
                    </ul>
                </div>

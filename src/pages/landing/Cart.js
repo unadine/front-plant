@@ -39,8 +39,8 @@ const makeOrder = async (e) => {
 
 		try{
 		const res = await axios.post(
-			'http://localhost:5000/api/orders',{
-        totalPrice: cartTotal
+			'http://localhost:5000/api/order-details/full',{
+        "details": items,
       },
 			{
 				headers: { 
@@ -56,28 +56,6 @@ const makeOrder = async (e) => {
 		}
 
 }
-const createOrder = async(e) =>{
-  e.preventDefault();
-  try{
-		const res = await axios.post(
-			'http://localhost:5000/api/order-details',{
-     items
-      },
-			{
-				headers: { 
-					"Content-Type": "application/json",
-					"authorization" : `Bearer ${token}` 
-				},
-			}
-		);
-		navigate("/checkout")
-
-		} catch(error){
-			console.log(error);
-		}
-        
-}
-
 
   return (
      <LandingContent 

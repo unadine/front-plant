@@ -24,7 +24,7 @@ const UpdateNursery = () => {
 		getUsers();
 		getNursery();
 		  
-},[id,users])
+},[])
 
   const getNursery = async () => {
 	try {
@@ -38,7 +38,6 @@ const UpdateNursery = () => {
 		  
 		}
 	  );
-	  console.log(response.data)
 	  setName(response.data.name)
       setDistrict(response.data.district)
       setAddress(response.data.address)
@@ -56,6 +55,7 @@ const UpdateNursery = () => {
 	const handlingChange = (e) => {
         if(e.target.name === 'name'){
             setName(e.target.value);
+			console.log(name);
         }
         if(e.target.name === 'district'){
             setDistrict(e.target.value);
