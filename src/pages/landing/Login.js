@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import { useState, useContext } from   'react';
+import { useState, useContext,useEffect } from   'react';
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
@@ -7,10 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { MainContext } from "./Context/ContextProvider";
 
 const Login = () => {
+	
 	const {setAuth } = useContext(MainContext);
 	const {nurseries, setNursery} = useContext(MainContext);
+	const {users,setUser} = useContext(MainContext);
 	const [id, setId] = useState("");
-
+	const token = localStorage.getItem('token');
 	const navigate = useNavigate();
 
 	const [email, setEmail] = useState("");
@@ -54,7 +56,8 @@ const Login = () => {
 		  if( role === "Admin"){
 			navigate("/users");
 		  }else if( role === "Entrepreneur"){
-			navigate("/overview")
+			
+			navigate("/addCategory")
 		  }else if( role === "Client"){
 			navigate("/shop")
 		  }	

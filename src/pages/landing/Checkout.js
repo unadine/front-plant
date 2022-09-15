@@ -84,9 +84,10 @@ content = {
             callback: (response) => {
               console.log(response);
               closePaymentModal(); 
+              emptyCart();
             },
             onClose: () => {
-              emptyCart()
+            
             }
           });
         }}>Proceed to Pay</button>

@@ -37,7 +37,7 @@ const MainRoutes = () => {
                     <Route path ="/signup" element={<Signup/>}/>
                     <Route path ="/signup/client" element={<ClientSignUp/>}/>
                     <Route path ="/signup/entrepreneur" element={<EntrepreneurSignUp/>}/>
-                    <Route path ="/entrepreneur/addNursery" element={<AddNursery/>}/>
+                    <Route path ="/addNursery" element={<AddNursery/>}/>
                     <Route path ="/login" element={<Login/>}/>
 
                     <Route path ="/shop" element={<ClientRoutes component={Shop}/>}/>

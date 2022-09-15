@@ -38,7 +38,7 @@ const Plant = () => {
     <LandingContent 
         content={ 
         <>
-        <link href="../assets/css/landing.css" rel="stylesheet" />
+        <link href="./assets/css/landing.css" rel="stylesheet" />
         <header class=" background py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">

@@ -12,7 +12,6 @@ const Category = () => {
 		const [name, setName] = useState('');
 
 		useEffect(()=>{
-			console.log(categories);
 			getCategories();
 			  
 		},[categories])
@@ -142,7 +141,6 @@ const Category = () => {
 							        <table class="table mb-0 text-left">
 										<thead>
 											<tr>
-												<th class="cell">Id</th>
 												<th class="cell">Name</th>
 												
 												<th class="cell"></th>
@@ -153,7 +151,6 @@ const Category = () => {
                     return(
 						
 						<tr>
-						<td class="cell">{cat.id}</td>	
 						<td class="cell">{cat.name}</td>			
 						
 						

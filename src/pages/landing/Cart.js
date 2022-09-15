@@ -49,7 +49,9 @@ const makeOrder = async (e) => {
 				},
 			}
 		);
+    console.log(res);
 		navigate("/checkout")
+
 
 		} catch(error){
 			console.log(error);
@@ -92,7 +94,7 @@ const makeOrder = async (e) => {
                     
                 <div class="col-md-2 col-lg-2 col-xl-2" key={index}>
                   <img
-                    src={item.img}
+                    src={`http://localhost:5000/${item.img}`}
                     class="img-fluid rounded-3 mb-3" alt="Cotton T-shirt"/>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-3">
@@ -136,7 +138,9 @@ const makeOrder = async (e) => {
           <div class="card mb-4">
             <div class="card-body p-4 d-flex flex-row">
               <div class="form-outline flex-fill">
-                <p class="form-label text-center">Total Amount: <span>{cartTotal + 1500} RWF</span></p>
+                <p class="form-label text-center">Total Amount:
+                 <span>{cartTotal + 1500} RWF
+                 </span></p>
               </div>
             </div>
           </div>

@@ -1,8 +1,56 @@
-import React from "react";
+import React,{useContext, useEffect,useState} from "react";
+import axios from "axios";
 import MainContent from "../../components/MainContent";
+import { MainContext } from "../landing/Context/ContextProvider";
+import { useNavigate } from "react-router";
 
 const Orders = () => {
-
+	const {orders, setOrder} = useContext(MainContext);
+	const { plants, setPlant } = useContext(MainContext);
+	const navigate = useNavigate();
+	const token = localStorage.getItem('token');
+      
+	useEffect(()=>{
+		getOrders();
+		getPlants()
+		  
+	},[orders,plants])
+	const getOrders = async () => {
+		try {
+		  const response = await axios.get(
+			'http://localhost:5000/api/order-details',
+			{
+			  headers: { 
+                "Content-Type": "application/json",
+                "authorization" : `Bearer ${token}` 
+            },
+              
+			}
+		  );
+          setOrder(response.data.map((order => ({...order}))));
+		} catch (err) {
+			console.error(err);
+		  	   
+		}
+	}
+	const getPlants = async () => {
+		try {
+		  const response = await axios.get(
+			'http://localhost:5000/api/plants',
+			{
+			  headers: { 
+                "Content-Type": "application/json",
+                "authorization" : `Bearer ${token}` 
+            },
+              
+			}
+		  );
+          setPlant(response.data.map((plant => ({...plant,id: plant.id}))));
+		} catch (err) {
+			console.error(err);
+		  	   
+		}
+	}
   return (
     <>
     <MainContent 
@@ -48,63 +96,37 @@ const Orders = () => {
 							        <table className="table app-table-hover mb-0 text-left">
 										<thead>
 											<tr>
-                      <th class="cell">Order</th>
-												<th class="cell">Plant</th>
-												<th class="cell">Customer</th>
+                                       
+												<th  class="cell">Plant Name</th>
 												<th class="cell">Quantity</th>
-												<th class="cell">Total</th>
 												<th class="cell">Status</th>
-												<th class="cell"></th>
+												
 											</tr>
 										</thead>
 										<tbody>
+										{ orders.map((order) => {
+											return(
+												<tr>
+												<td class="cell">{order.plant.name}</td>
+												<td class="cell">{order.qty}</td>
+												<td class="cell">{order.order.status}</td>
+                                               		
+											</tr>
+												
+												
 											
-											<tr>
-												<td className="cell">#01</td>
-												<td className="cell"><span className="truncate">Mangoes</span></td>
-												<td className="cell">Jayden Massey</td>
-												<td className="cell">3</td>
-												<td className="cell">$199.00</td>
-												<td className="cell"><span className="badge bg-danger">Not Delivered</span></td>
-												<td className="cell"><a className="btn-sm app-btn-secondary" href="#">View</a></td>
-											</tr>
-											<tr>
-												<td className="cell">#02</td>
-												<td className="cell"><span className="truncate">Tulips</span></td>
-												<td className="cell">kelly Winson</td>
-												<td className="cell">2</td>
-												<td className="cell">$199.00</td>
-												<td className="cell"><span className="badge bg-success">Delivered</span></td>
-												<td className="cell"><a className="btn-sm app-btn-secondary" href="#">View</a></td>
-											</tr>
-											<tr>
-												<td className="cell">#03</td>
-												<td className="cell"><span className="truncate">Roses</span></td>
-												<td className="cell">Lola Kenn</td>
-												<td className="cell">2</td>
-												<td className="cell">$199.00</td>
-												<td className="cell"><span className="badge bg-success">Delivered</span></td>
-												<td className="cell"><a className="btn-sm app-btn-secondary" href="#">View</a></td>
-											</tr>
+																   )
+																})}
+							
+											
+
 		
 										</tbody>
 									</table>
 						        </div>
 						       
 						    </div>
-						<nav className="app-pagination">
-							<ul className="pagination justify-content-center">
-								<li className="page-item disabled">
-									<a className="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-							    </li>
-								<li className="page-item active"><a className="page-link" href="#">1</a></li>
-								<li className="page-item"><a className="page-link" href="#">2</a></li>
-								<li className="page-item"><a className="page-link" href="#">3</a></li>
-								<li className="page-item">
-								    <a className="page-link" href="#">Next</a>
-								</li>
-							</ul>
-						</nav>
+						
 						
 			        </div>
 				</div>

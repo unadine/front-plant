@@ -131,7 +131,6 @@ const Nurseries = () => {
 		  );
           setNursery(response.data.map((nu => ({...nu,id: nu.id}))));
 		} catch (err) {
-			// alert(err);
 			console.error(err);
 		  	   
 		}

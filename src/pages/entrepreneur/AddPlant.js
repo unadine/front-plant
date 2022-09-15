@@ -42,7 +42,7 @@ const AddPlant = () => {
             setPrice(e.target.value);
         }
 		if(e.target.name === 'image'){
-            setImage(e.target.value);
+            setImage(e.target.files[0]);
         }
 		if(e.target.name === 'categoryId'){
             setCat(e.target.value);
@@ -111,20 +111,15 @@ const getPlants = async () => {
 		}
 	  );
 	  setPlant(response.data.map((plant => ({...plant,id: plant.id}))));
+
 	} catch (err) {
 		console.error(err);
 			 
 	}
 }
-const plantt = {
-	name : name,
-	description:description,
-	image:'image.png',
-	qty: parseInt(qty),
-	unitPrice: parseInt( unitPrice),
-	categoryId: categoryId,
-	nurseryId:nurseryId
-  };
+
+
+
 
 const addPlant = async (e) => {
 	e.preventDefault();
@@ -138,7 +133,7 @@ const addPlant = async (e) => {
 		console.log("The response is", [...formData])
 		try{
 		const res = await axios.post(
-			'http://localhost:5000/api/plants',plantt,
+			'http://localhost:5000/api/plants',formData,
 			{
 				headers: { 
 					"Content-Type": "application/json",
@@ -162,6 +157,28 @@ const addPlant = async (e) => {
 		}
 }
 
+const deletePlant= async (id) => {
+	try {
+	  const response = await axios.delete(
+		`http://localhost:5000/api/plants/${id}`,
+		{
+		  headers: { 
+			"Content-Type": "application/json",
+			"authorization" : `Bearer ${token}` 
+		},
+		  
+		}
+	  );
+	alert("Plant deleted successfully");
+	navigate('/addPlant')
+	} catch (err) {
+		console.error(err);
+			 
+	}
+}
+
+
+
   return (
     <>
     <MainContent 
@@ -178,24 +195,7 @@ const addPlant = async (e) => {
 			    <div className="row g-3 mb-4 align-items-center justify-content-between">
 				    <div className="col-auto">
 			            <h1 className="app-page-title mb-0">Plant</h1>
-						{  loggedId}
-						{ nurseries.map((nu, index) => {
-							if( loggedId == nu.entreprenuer.id){
-							return(
-								
-								<tr key={index}>
-
-								<td class="cell">{nu.name}</td>	
-								<td class="cell">{nu.id}</td>	
-								<td> 
-								</td>			
-								
-								
-							</tr>
-							
-												)
-							}
-						})}
+						
 				    </div>
 				    <div className="col-auto">
 					     <div className="page-utilities">
@@ -288,7 +288,6 @@ const addPlant = async (e) => {
 							        <table class="table mb-0 text-left">
 										<thead>
 											<tr>
-												<th class="cell">Plant</th>
 												<th class="cell">Name</th>
 												<th class="cell">Description</th>
 												<th class="cell">Quantity</th>
@@ -301,21 +300,18 @@ const addPlant = async (e) => {
 										{ plants.map((plant) => {
                                        return(
 										<tr>
-												<td class="cell">{plant.id}</td>
                                                 <td class="cell">{plant.name}</td>
 												<td class="cell"><span class="truncate">{plant.description}</span></td>
 												<td class="cell">{plant.qty}</td>
                                                 <td class="cell">{plant.unitPrice}</td>
 												<td class="cell">{plant.category.name}</td>			
 												<td class="cell">
-													<a class="mx-3">
-													<i class="fa-regular fa-eye"></i>
-													</a>
+												
 													<a class="mx-3">
 													<i class="fa-solid fa-pen-to-square"></i>
 													</a>
 													<a class="mx-2">
-													<i class="fa-solid fa-trash"></i>
+													<span onClick={() => deletePlant(plant.id)}><i class="fa-solid fa-trash" ></i></span>
 													</a>
 													
 													

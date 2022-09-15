@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 
 const AddNursery = () => {
 	const navigate = useNavigate();
+    let formData = new FormData(); 
     const token = localStorage.getItem('token');
 	const [name, setName] = useState('');
 	const [district, setDistrict] = useState('');
@@ -14,7 +15,7 @@ const AddNursery = () => {
 	const [phone, setPhone] = useState('');
 	const [image, setImage] = useState();
 
-      const handlingChange = (e) => {
+    const handlingChange = (e) => {
         if(e.target.name === 'name'){
             setName(e.target.value);
         }
@@ -30,24 +31,20 @@ const AddNursery = () => {
         }
 		if(e.target.name === 'image'){
             setImage(e.target.files[0]);
-        }    
-    
+        }
     }
 
 
 	const addNursery = async (e) => {
 		e.preventDefault();
-		var data = {
-			name:name,
-			district:district,
-			address:address,
-			phone:phone,
-			image:image,
-			
-		  }
+		formData.append('name', name);
+		formData.append('district', district);
+		formData.append('address', address);
+		formData.append('phone', phone);
+		formData.append('image', image);
 		try{
 		const res = await axios.post(
-			'http://localhost:5000/api/nurseries',data,
+			'http://localhost:5000/api/nurseries',formData,
 			{
 				headers: { 
 					"Content-Type": "application/json",
@@ -56,7 +53,12 @@ const AddNursery = () => {
 			}
 		);
 		alert("Successfully created a new nursery");
-		navigate("/nurseries")
+		setName('');
+		setDistrict('');
+		setAddress('');
+		setPhone('');
+		setImage();
+		navigate("/addCategory")
 
 		} catch(error){
 			console.log(error);
@@ -99,7 +101,7 @@ const AddNursery = () => {
                             </div>
                             <div class="mb-3">
                             <label for="setting-input-3" class="form-label">Image</label>
-                            <input onChange={handlingChange} type="file" name="image" value={image} class="form-control" id="setting-input-3" />
+                            <input onChange={handlingChange} type="file" name="image"  class="form-control" id="setting-input-3" />
                         </div>
                          
                             

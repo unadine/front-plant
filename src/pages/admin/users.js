@@ -96,7 +96,6 @@ const Users = () => {
 							        <table className="table app-table-hover mb-0 text-left">
 										<thead>
                                         <tr>
-                                            <th class="cell">Id</th>
   											<th class="cell">Name</th>
                                             <th class="cell">Email</th>
                                             <th class="cell">Phone</th>
@@ -110,7 +109,6 @@ const Users = () => {
                                                     return(
                                                         
                                                         <tr>
-                                                        <td class="cell">{user.id}</td>	
                                                         <td class="cell">{user.name}</td>	
                                                         <td class="cell">{user.email}</td>	
                                                         <td class="cell">{user.phone}</td>	

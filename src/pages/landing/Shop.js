@@ -42,8 +42,8 @@ const Shop = () => {
         <header class=" background py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Check out our Plant Nurseries</p>
+                    <h1 class="display-4 fw-bolder text-white">Shop in style</h1>
+                    <p class="lead fw-normal text-white mb-0">Check out our Plant Nurseries</p>
                 </div>
             </div>
         </header>
@@ -55,7 +55,7 @@ const Shop = () => {
                     return(
                     <div class="col mb-5" >
                         <div class="card h-100">
-                            <img class="card-img-top" src={ nursery.image} alt={ nursery.name} />
+                            <img class="card-img-top" src={ `http://localhost:5000/${nursery.image}`} alt={ nursery.name} />
                             <div class="card-body p-4">
                                 <div class="">
                                     <h5 class="fw-bolder">{ nursery.name }</h5>

@@ -59,7 +59,7 @@ const NavBar = () => {
                 ]}
                 { role === "Entrepreneur"  && [
                     <>
-                    <Link to="/overview"> <li class="nav-item "><a class="nav-link text-white font-weight-bold">Dashboard</a></li></Link>
+                    <Link to="/orders"> <li class="nav-item "><a class="nav-link text-white font-weight-bold">Dashboard</a></li></Link>
                     </>
                 ]}
                 { role === "Admin"  && [

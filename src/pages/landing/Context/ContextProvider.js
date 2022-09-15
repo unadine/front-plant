@@ -9,6 +9,7 @@ export const ContextProvider = (props) => {
   const [plants, setPlant] = useState([]);
   const [users, setUser] = useState([]);
   const [categories, setCategory] = useState([]);
+  const [orders, setOrder] = useState([]);
   const value = {
     auth, 
     setAuth,
@@ -19,7 +20,9 @@ export const ContextProvider = (props) => {
     categories, 
     setCategory,
     users, 
-    setUser
+    setUser,
+    orders, 
+    setOrder
   }
   return (
     <MainContext.Provider value={value}>
